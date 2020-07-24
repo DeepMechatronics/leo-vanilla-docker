@@ -5,7 +5,7 @@
 
 Run command below with leo-vanilla repository credentials to build docker image:
 ```bash
-$ sudo ./build.sh --username <USERNAME> --password <PASSWORD>
+$ sudo ./build.sh 
 ```
 
 Next, you can run container with:
