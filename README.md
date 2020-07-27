@@ -3,27 +3,36 @@
 
 ### Usage ###
 
-Run command below with leo-vanilla repository credentials to build docker image:
+1. Run command below with leo-vanilla repository credentials to build docker image:
 ```bash
 $ sudo ./build.sh 
 ```
 
-Next, you can run container with:
+2. Next, you can run container with:
 ```bash
 $ sudo docker run -it --name=<CONTAINER_NAME> --env="DISPLAY" --env="QT_X11_NO_MITSHM=1" --volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" vanilla_leo:latest
 ```
 
-Enable X server on host:
+3. Enable X server on host, before running container or attaching to it:
 ```sh
 $ xhost +local:root
 ```
 
-or if you're concerned about security:
+4. or if you're concerned about security:
 ```sh
 $ xhost +local:`docker inspect --format='{{ .Config.Hostname }}' <CONTAINER_NAME>`
 ```
 
-Then, you can run command in running container:
+5. Then, you can run command in running container:
 ```sh
-$ sudo docker exec -it <CONTAINER_NAME>> /bin/bash
+$ sudo docker exec -it <CONTAINER_NAME> /bin/bash
+```
+
+6. Run Gazebo simulation
+```
+roslaunch leo_gazebo leo_empty_world.launch
+```
+7. Open another terminal and run rviz
+```
+roslaunch leo_viz rviz.launch
 ```
